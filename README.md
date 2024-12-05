@@ -49,7 +49,7 @@ $$
 ![PSO-alg](./images/PSO-alg.png)
 
 ### Objective function
-1. **Generic objective function [$\mathcal{L}^{\text{Comp}}(\mathbf{I}|\mathcal{C})$]**
+1. **Generic objective function $[\mathcal{L}^{\text{Comp}}(\mathbf{I}|\mathcal{C})]$**
 
 $$
 fit = - max\{0, CP(T) - P_{allowance}\}
@@ -63,7 +63,7 @@ def GenericLoss(I):
     return fitness_value
 ```
 
-2. **Quick Charging objective function [$\mathcal{L}^{\text{QC}}(\mathbf{I}|\mathcal{C})$]**
+2. **Quick Charging objective function $[\mathcal{L}^{\text{QC}}(\mathbf{I}|\mathcal{C})]$**
 
 $$
 fit := \mathcal{L}^{QC} (I) = \sum_{T = 0}^{s-1} \frac{s- T}{s-1} \cdot CP(T)
@@ -78,14 +78,15 @@ def QuickChargeLoss(particle):
     return fitness_value
 ```
 
-3. **Non-completion penalty [$\mathcal{L}^{\text{NC}}(\mathbf{I}|\mathcal{C})$]**
+3. **Non-completion penalty $[\mathcal{L}^{\text{NC}}(\mathbf{I}|\mathcal{C})]$**
+
 $$
 fit := \mathcal{L}^{NC} (I) = -Penalty^{1/\alpha} \\
 Penalty = \sum_{i = 0}^{N-1} (\text{Energy Shortfall}_i)^{\alpha} \\
 \text{Energy Shortfall}_i = |\text{Total Energy}_i - E_{required, i}| \\
 \text{Total Energy}_i = \sum_{j=0}^{s-1} I_{i,j} \cdot U \cdot \Delta t
-
 $$
+
 ```python
 def NonCompetitionLoss(particle, alpha):
     penalty = 0
@@ -96,11 +97,13 @@ def NonCompetitionLoss(particle, alpha):
     fitness_value = -penalty**(1/alpha)
     return fitness_value
 ```
-4. **Load Variation objective function [$\mathcal{L}^{\text{LV}}(\mathbf{I}|\mathcal{C})$]**
+
+4. **Load Variation objective function $[\mathcal{L}^{\text{LV}}(\mathbf{I}|\mathcal{C})]$**
 
 $$
 fit := \mathcal{L}^{LV} (I) = - \sum_{q = 0}^{s-1}(\sum_{p=0}^{N-1} I_{p,q})^2 
 $$
+
 ```python
 def LoadVariationLoss(particle):
     fitness_value = 0
@@ -109,19 +112,23 @@ def LoadVariationLoss(particle):
         fitness_value += -N_t ** 2
     return fitness_value
 ```
-5. **Composite objective function [$\mathcal{L}^{\text{Comp}}(\mathbf{I}|\mathcal{C})$]**
+
+5. **Composite objective function $[\mathcal{L}^{\text{Comp}}(\mathbf{I}|\mathcal{C})]$**
+
 $$
     \mathcal{L}^{\text{Comp}} (\mathbf{I}) = w_{\text{QC}}\mathcal{L}^{\text{QC}} (\mathbf{I})+ w_{\text{NC}}\mathcal{L}^{\text{NC}} (\mathbf{I})+ w_{\text{LV}}\mathcal{L}^{\text{LV}} (\mathbf{I}),
 $$
+
 $\quad \quad \text{where} \quad w \in [0,1]$.
 
-6. **Safety-aware Objective function**
+6. **Safety-aware objective function $[\mathcal{L}^{\text{SA}}(\mathbf{I}|\mathcal{C})]$**
 
 $$
 fit := Reward - Penalty\\
 Reward = \sum_{T=0}^{s-1}[-|CP(T) - P_{max} | + P_{allowance}]\\
 Penalty = \sum_{T=0}^{s-1} [max(0, CP(T)) - P_{allowance}]^2
 $$
+
 ```python
 def SafetyAwareLoss(I):
     column_sum = I.sum(axis=0)  
@@ -170,6 +177,9 @@ GA explores a larger solution space, leading to higher variation in results comp
 - Largest speed gain: PSO-$\mathcal{L}^{LV}$ (25% faster than GA).
 - Smallest speed gain: PSO-$\mathcal{L}^{QC}$ (1.5% faster than GA).
 - PSO's efficiency makes it suitable for time-critical applications, particularly for $\mathcal{L}^{Gen}, \mathcal{L}^{NC}, \mathcal{L}^{LV}$.
+
+## Acknowledgements
+The authors would like to express their gratitude to colleagues at Phenikaa University of FPT for their stimulating discussions and support during the hackathon.
 
 ## Citation
 If you find this work useful, please cite the following paper:  
