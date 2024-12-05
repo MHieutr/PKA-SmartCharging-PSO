@@ -199,7 +199,7 @@ ax[1].set_xticklabels(time_labels, fontsize = 12)
 ax[1].set_xlabel("Time [minute]", fontsize = 14, weight = 'bold')
 
 # Update y-axis to display the allowed current options
-ax[1].set_yticks(I_options)
+ax[1].set_yticks(I_options, fontsize = 12)
 ax[1].set_yticklabels(I_options, fontsize = 12)
 ax[1].set_ylabel("Charging Current (A)", fontsize = 14, weight = 'bold')
 ax[1].grid(True)
