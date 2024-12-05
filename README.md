@@ -89,11 +89,11 @@ Penalty = \sum_{i = 0}^{N-1} (\text{Energy Shortfall}_i)^{\alpha}
 $$
 
 $$
-\text{Energy Shortfall}_i = $|\text{Total Energy}_i - E_{required, i}|$  
+\text{Energy Shortfall}_i = |\text{Total Energy}_i - E_{required, i}|
 $$
 
 $$
-\text{Total Energy}_i = \sum_{j=0}^{s-1} I_{i,j} \cdot U \cdot $\Delta t$ 
+\text{Total Energy}_i = \sum_{j=0}^{s-1} I_{i,j} \cdot U \cdot \Delta t
 $$
 
 ```python
@@ -133,10 +133,14 @@ $\quad \quad \text{where} \quad w \in [0,1]$.
 6. **Safety-aware objective function $[\mathcal{L}^{\text{SA}}(\mathbf{I}|\mathcal{C})]$**
 
 $$
-fit := Reward - Penalty\\
+fit := Reward - Penalty
+$$
 
-Reward = \sum_{T=0}^{s-1}[-|CP(T) - P_{max} | + P_{allowance}]\\
+$$
+Reward = \sum_{T=0}^{s-1}[-|CP(T) - P_{max} | + P_{allowance}]
+$$
 
+$$
 Penalty = \sum_{T=0}^{s-1} [max(0, CP(T)) - P_{allowance}]^2
 $$
 
@@ -159,7 +163,7 @@ def SafetyAwareLoss(I):
 
 $$\text{Optimization result for smart charge scheduling of EVs using GA algorithm}$$
 
-- Only GA-$\mathcal{L}^{QC}$ and GA-$\mathcal{L}^{Comp}$ occasionally exceed the power threshold ($P_{allowance}$)
+- Only $GA-\mathcal{L}^{QC}$ and $GA-\mathcal{L}^{Comp}$ occasionally exceed the power threshold ($P_{allowance}$)
 - Schedules high power loads in the first 0–10 minutes, then gradually decreases, ensuring all EVs are charged.
 
 **PSO Observation**
@@ -178,12 +182,12 @@ GA explores a larger solution space, leading to higher variation in results comp
 
 |                  | GA     | PSO    |
 |------------------|--------|--------|
-| $ \mathcal{L}_{\text{Gen}} $   | 1.63 [s] | 1.26 [s] |
-| $ \mathcal{L}_{\text{QC}} $    | 2.01 [s] | 1.98 [s] |
-| $ \mathcal{L}_{\text{NC}} $    | 2.09 [s] | 1.82 [s] |
-| $ \mathcal{L}_{\text{LV}} $    | 1.96 [s] | 1.47 [s] |
-| $ \mathcal{L}_{\text{Comp}} $  | 3.19 [s] | 3.13 [s] |
-| $ \mathcal{L}_{\text{SA}} $    | 1.71 [s] | 1.34 [s] |
+| $\mathcal{L}_{\text{Gen}}$   | 1.63 [s] | 1.26 [s] |
+| $\mathcal{L}_{\text{QC}}$    | 2.01 [s] | 1.98 [s] |
+| $\mathcal{L}_{\text{NC}}$    | 2.09 [s] | 1.82 [s] |
+| $\mathcal{L}_{\text{LV}}$    | 1.96 [s] | 1.47 [s] |
+| $\mathcal{L}_{\text{Comp}}$  | 3.19 [s] | 3.13 [s] |
+| $\mathcal{L}_{\text{SA}}$    | 1.71 [s] | 1.34 [s] |
 
 
 - PSO is faster, with an average runtime of 1.83s (12.9% faster than GA’s 2.10s).
