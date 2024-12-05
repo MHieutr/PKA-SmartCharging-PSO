@@ -81,9 +81,18 @@ def QuickChargeLoss(particle):
 3. **Non-completion penalty $[\mathcal{L}^{\text{NC}}(\mathbf{I}|\mathcal{C})]$**
 
 $$
-fit := \mathcal{L}^{NC} (I) = -Penalty^{1/\alpha} \\
-Penalty = \sum_{i = 0}^{N-1} (\text{Energy Shortfall}_i)^{\alpha} \\
-\text{Energy Shortfall}_i = |\text{Total Energy}_i - E_{required, i}| \\
+fit := \mathcal{L}^{NC} (I) = -Penalty^{1/\alpha}
+$$
+
+$$
+Penalty = \sum_{i = 0}^{N-1} (\text{Energy Shortfall}_i)^{\alpha}
+$$
+
+$$
+\text{Energy Shortfall}_i = |\text{Total Energy}_i - E_{required, i}| 
+$$
+
+$$
 \text{Total Energy}_i = \sum_{j=0}^{s-1} I_{i,j} \cdot U \cdot \Delta t
 $$
 
@@ -125,7 +134,9 @@ $\quad \quad \text{where} \quad w \in [0,1]$.
 
 $$
 fit := Reward - Penalty\\
+
 Reward = \sum_{T=0}^{s-1}[-|CP(T) - P_{max} | + P_{allowance}]\\
+
 Penalty = \sum_{T=0}^{s-1} [max(0, CP(T)) - P_{allowance}]^2
 $$
 
@@ -145,6 +156,7 @@ def SafetyAwareLoss(I):
 **GA Observation**
 
 ![GA-re](./images/GA-results.png)
+
 $$\text{Optimization result for smart charge scheduling of EVs using GA algorithm}$$
 
 - Only GA-$\mathcal{L}^{QC}$ and GA-$\mathcal{L}^{Comp}$ occasionally exceed the power threshold ($P_{allowance}$)
@@ -153,10 +165,11 @@ $$\text{Optimization result for smart charge scheduling of EVs using GA algorith
 **PSO Observation**
 
 ![PSO-re](./images/PSO-results.png)
+
 $$\text{Optimization result for smart charge scheduling of EVs using PSO algorithm}$$
 
-- Distributes the load more evenly, except for PSO-$\mathcal{L}^{Gen}$
-- PSO-$\mathcal{L}^{LV}$ and PSO-$\mathcal{L}^{Comp}$ may leave some EVs uncharged due to load variation constraints.
+- Distributes the load more evenly, except for $PSO-\mathcal{L}^{Gen}$
+- $PSO-\mathcal{L}^{LV}$ and $PSO-\mathcal{L}^{Comp}$ may leave some EVs uncharged due to load variation constraints.
 
 #### Conclusion
 GA explores a larger solution space, leading to higher variation in results compared to PSO's steadier but sometimes limited optimization. Safety-Aware Objective function successfully balances power usage close to capacity without exceeding limits in both GA and PSO.
@@ -174,8 +187,8 @@ GA explores a larger solution space, leading to higher variation in results comp
 
 
 - PSO is faster, with an average runtime of 1.83s (12.9% faster than GA’s 2.10s).
-- Largest speed gain: PSO-$\mathcal{L}^{LV}$ (25% faster than GA).
-- Smallest speed gain: PSO-$\mathcal{L}^{QC}$ (1.5% faster than GA).
+- Largest speed gain: $PSO-\mathcal{L}^{LV}$ (25% faster than GA).
+- Smallest speed gain: $PSO-\mathcal{L}^{QC}$ (1.5% faster than GA).
 - PSO's efficiency makes it suitable for time-critical applications, particularly for $\mathcal{L}^{Gen}, \mathcal{L}^{NC}, \mathcal{L}^{LV}$.
 
 ## Acknowledgements
