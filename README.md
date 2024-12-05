@@ -88,10 +88,9 @@ $$
 \text{Penalty} = \sum_{i=0}^{N-1} (\text{Energy Shortfall}_i)^{\alpha}
 $$
 
-where, energy shortfall can be calculated as:
 
 $$
-Energy Shortfall_i = |\text{Total Energy}_i - E_{\text{required}, i}|
+Energy Shortfall_i = |\text{Total Energy}_i - E_{required, i}|
 $$
 
 $$
