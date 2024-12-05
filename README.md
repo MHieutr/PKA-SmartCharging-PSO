@@ -89,7 +89,7 @@ $$
 $$
 
 $$
-Energy Shortfall_i = |\text{Total Energy}_i - E_{\text{required}, i}|
+Energy Shortfall_i = \text{Total Energy}_i - E_{\text{required}, i}
 $$
 
 $$
