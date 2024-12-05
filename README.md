@@ -89,11 +89,11 @@ Penalty = \sum_{i = 0}^{N-1} (\text{Energy Shortfall}_i)^{\alpha}
 $$
 
 $$
-\text{Energy Shortfall}_i = |\text{Total Energy}_i - E_{required, i}| 
+\text{Energy Shortfall}_i = |\text{Total Energy}_i - E_\text{required, i}|  
 $$
 
 $$
-\text{Total Energy}_i = \sum_{j=0}^{s-1} I_{i,j} \cdot U \cdot \Delta t
+\text{Total Energy}_i = \sum_{j=0}^{s-1} I_{i,j} \cdot U \cdot \Delta t 
 $$
 
 ```python
