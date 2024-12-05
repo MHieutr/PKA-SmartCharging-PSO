@@ -89,11 +89,11 @@ $$
 $$
 
 $$
-Total Energy_i = \sum_{j=0}^{s-1} I_{i,j} \cdot U \cdot \Delta t 
+Energy Shortfall_i = |Total Energy_i - E_{required, i}|
 $$
 
 $$
-Energy Shortfall_i = |\text{Total Energy}_i - E_{required, i}|
+Total Energy_i = \sum_{j=0}^{s-1} I_{i,j} \cdot U \cdot \Delta t 
 $$
 
 ```python
