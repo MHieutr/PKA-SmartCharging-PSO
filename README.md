@@ -81,21 +81,19 @@ def QuickChargeLoss(particle):
 3. **Non-completion penalty $[\mathcal{L}^{\text{NC}}(\mathbf{I}|\mathcal{C})]$**
 
 $$
-fit := \mathcal{L}^{NC} (I) = -Penalty^{1/\alpha}
+\text{fit} := \mathcal{L}^{NC} (I) = -\text{Penalty}^{1/\alpha}
 $$
 
 $$
-Penalty = \sum_{i = 0}^{N-1} (\text{Energy Shortfall}_i)^{\alpha}
+\text{Penalty} = \sum_{i=0}^{N-1} (\text{Energy Shortfall}_i)^{\alpha}
 $$
 
-$$ 
-\begin{equation*}
-Energy Shortfall_i = |\text{Total Energy}_i - E_{required, i}|
-\end{equation*}
+$$
+\text{Energy Shortfall}_i = |\text{Total Energy}_i - E_{\text{required}, i}|
 $$
 
-$$ 
-Total Energy_i = \sum_{j=0}^{s-1} I_{i,j} \cdot U \cdot \Delta t 
+$$
+\text{Total Energy}_i = \sum_{j=0}^{s-1} I_{i,j} \cdot U \cdot \Delta t 
 $$
 
 ```python
