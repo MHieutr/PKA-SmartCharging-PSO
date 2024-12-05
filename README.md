@@ -26,12 +26,15 @@ Let N be the number of stations in the charging hub, which is equal to the maxim
 - $P_{allowance} = 350 (kW)$, we set the maximum allowable power to the 70% of the extreme case to avoid overloading of the charging hub.
 - $t_0 = 0, t_{max} = 60, s = 13, \Delta t = \frac{t_1 - t_0}{s - 1} = 5 \quad minutes$, the control horizon is 60 minutes, divided into 13 time steps. 
 - The power consumption as a matrix can be presented as below: 
-$$\mathbf{P} = U\cdot\mathbf{I} = 220\cdot \begin{bmatrix}
+
+$$
+\mathbf{P} = U\cdot\mathbf{I} = 220\cdot \begin{bmatrix}
     I_{0,0} & I_{0,1} & \dots &I_{0,12}\\
     I_{1,0} & I_{1,1} & \dots &I_{1,12}\\
         & & & \\
     I_{9,0} & I_{9,1} & \dots &I_{9,12}\\
-\end{bmatrix}$$
+\end{bmatrix}
+$$
 - $CI_p = (I_{p,0}, I_{p,1}, ... , I_{p, s-1})$, the sequence is a charging configuration of an individual EV. Where control current $I_{p,q}$ with $p \in [0, N-1]$, and $q \in [0, s-1]$ since the power matrix P is $N \times s$.
 - $CP(T) = 220 \cdot \sum_{p=0}^{N-1} I_{p, T}$, the power of all stations used at time $T \in [0, s-1]$. 
 - $\mathcal{C} := \text{CP(T)} \leq P_{allowance}; \forall T \in [0, s-1]$, constrain of $P_{allowance}$.
