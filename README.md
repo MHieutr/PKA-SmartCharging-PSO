@@ -89,7 +89,7 @@ Penalty = \sum_{i = 0}^{N-1} (\text{Energy Shortfall}_i)^{\alpha}
 $$
 
 $$ 
-Energy Shortfall_i = \abs{\text{Total Energy}_i - E_{required, i}} 
+Energy Shortfall_i = \mid \text{Total Energy}_i - E_{required, i} \mid 
 $$
 
 $$ 
